@@ -2,6 +2,8 @@ Final Project CF7 "Notes App".
 
 
 **System Analysis**
+
+
 1.1 Web Application Description
 The "Notes App" provides the following online services:
 
@@ -124,6 +126,8 @@ Computing Systems
 Database Server
 
 **SSL Encryption**
+
+
 SSL (Secure Sockets Layer) encryption ensures the secure transfer of data between the user and the browser. In our web application, we created a self-signed certificate using OpenSSL in XAMPP.
 In the C:\xampp\apache\bin\ folder, we use the command:
 "openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout localhost-key.pem -out localhost.pem -config "C:\xampp\apache\conf\openssl.cnf""
@@ -147,6 +151,8 @@ openssl req: Command for creating certificate requests.
 We filled in the requested information, setting the Country Name to GR, the Organization Name to Unipi, and the Common Name to localhost. Then, two files are created: localhost-key.pem (private key) and localhost.pem (certificate), which we moved to the C:\xampp\apache\conf\ssl folder. We then configured Apache, and specifically in the httpd-ssl.conf file, we set the SSLCertificateFile and SSLCertificateKeyFile with the appropriate paths. We enabled the SSL Module and restarted Apache from the XAMPP Control Panel.
 
 **Authentication Mechanism**
+
+
 By "authentication," we mean that only authorized users have access to their accounts. In our web application, we implement this mechanism as follows:
 The user provides their credentials (username and password).
 The password is compared to the stored hash in the database (appnotes_db).
@@ -156,11 +162,13 @@ During registration, the user's password is saved in the database as a hash (pas
 During login, password_verify is used to compare the password the user provided with the hash.
 
 **Access Control Mechanism**
+
+
 With "access control," we ensure that users only have access to data that concerns them. In our web application, we implement this mechanism as follows:
 The user's identity is maintained through sessions. When the user logs in successfully, a session is created that contains information about the user. Specifically, it includes the user_id, which represents the user's unique identifier from the database.
 The "protected" page checks if there is an active session and if it contains valid information, such as the user_id. If the session does not exist or is empty, the user is redirected to the login page.
-The "protected" page is the one that requires access control and is related to the user's personal data. In our web application, this is:
-The Notes Page, where users can view, edit, and create only their own notes. The page checks if the user is logged in via the session before loading the data.
+The "protected" page is the one that requires access control and is related to the user's personal data. In our web application, this is
+the Notes Page, where users can view, edit, and create only their own notes. The page checks if the user is logged in via the session before loading the data.
 If the user logs out, the session is destroyed, and all pages become inaccessible. This is achieved with the session_destroy command.
 In short, the access control mechanism protects user data, as everyone has access only to their own notes. A non-logged-in user does not have access to the notes page, as access is protected via sessions. If they try to connect to this page, they are redirected to the login page.
 
@@ -168,6 +176,8 @@ Input filtering and validation ensure that user data is safe and valid before be
 
 
 **Installation Instructions**
+
+
 The web application was implemented using PHP and HTML.
 
 After installing Visual Studio Code, open the .txt files located in the Codes folder by going to File > Open File.
